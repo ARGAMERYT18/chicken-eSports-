@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CHICKEN ESPORTS - Official Android App Download</title>
+    <meta name="description" content="Download the official CHICKEN ESPORTS app. Compete in BGMI, Free Fire, and Minecraft tournaments with instant payouts and secure deposits.">
+    <meta name="theme-color" content="#080705">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="CHICKEN ESPORTS - Official Download">
+    <meta property="og:description" content="Play Esports Tournaments & Win Real Cash Rewards. Safe Deposits and Instant UPI Payouts.">
+    <meta property="og:image" content="https://cdn.discordapp.com/attachments/1562406734432047185/1563044489919074454/file_0000000035948211b187775f8cc1d669.png?ex=6adc321e&is=6adae09e&hm=e91b309b0dd84713fd3823fef85d27f37a6b31f4d86a9b0449af1874efa41f1b&">
+    <meta property="og:type" content="website">
+
+    <!-- Third-Party CDN Dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <style>
+        /* ==========================================================================
+           1. CORE CSS VARIABLES & THEME DEFINITIONS
+           ========================================================================== */
+        :root {
+            --bg-color: #080705;
+            --card-bg: #14120D;
+            --gold-primary: #FFD700;
+            --gold-light: #FFE57F;
+            --gold-dark: #B8860B;
+            --gold-gradient: linear-gradient(135deg, #FFE57F 0%, #FFD700 40%, #B8860B 80%, #DAA520 100%);
+            --discord-color: #5865F2;
+            --purple-glow: #A855F7;
+            --text-main: #FDFBF7;
+            --text-muted: #A39B8B;
+            --border-gold: rgba(255, 215, 0, 0.3);
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 50% 100%, rgba(184, 134, 11, 0.1) 0%, transparent 50%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* ==========================================================================
+           2. DISCORD FLOATING BUTTON (TOP RIGHT)
+           ========================================================================== */
+        .discord-corner-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #5865F2, #4752C4);
+            color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: pulseDiscord 2s infinite alternate;
+        }
+
+        .discord-corner-btn:hover {
+            transform: scale(1.12) rotate(8deg);
+            color: #FFFFFF;
+            box-shadow: 0 0 30px rgba(88, 101, 242, 0.9);
+        }
+
+        @keyframes pulseDiscord {
+            0% { box-shadow: 0 0 15px rgba(88, 101, 242, 0.5); }
+            100% { box-shadow: 0 0 28px rgba(88, 101, 242, 0.9); }
+        }
+
+        /* ==========================================================================
+           3. ANIMATIONS & TRANSITIONS
+           ========================================================================== */
+        @keyframes floatLogo {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes pulseGoldAura {
+            0% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), inset 0 0 10px rgba(255, 215, 0, 0.2); }
+            100% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.9), inset 0 0 20px rgba(255, 215, 0, 0.5); }
+        }
+
+        @keyframes goldShimmer {
+            0% { transform: rotate(30deg) translateX(-100%); }
+            20% { transform: rotate(30deg) translateX(100%); }
+            100% { transform: rotate(30deg) translateX(100%); }
+        }
+
+        @keyframes pulseBadge {
+            0% { border-color: rgba(255, 215, 0, 0.4); }
+            100% { border-color: rgba(255, 215, 0, 0.9); }
+        }
+
+        /* ==========================================================================
+           4. CONTAINER & HERO LAYOUT
+           ========================================================================== */
+        .hero-container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px 20px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .app-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold-primary);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: floatLogo 3.5s ease-in-out infinite, pulseGoldAura 2s infinite alternate;
+            background-color: var(--card-bg);
+        }
+
+        .title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            background: linear-gradient(135deg, #FFF 10%, #FFE57F 40%, #FFD700 70%, #B8860B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 2px 10px rgba(255, 215, 0, 0.3));
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* ==========================================================================
+           5. CALL TO ACTION BUTTONS
+           ========================================================================== */
+        .btn-gold-download {
+            background: var(--gold-gradient);
+            color: #080705;
+            font-weight: 800;
+            font-size: 1.05rem;
+            padding: 16px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.4);
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        .btn-gold-download:hover, .btn-gold-download:focus {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 35px rgba(255, 215, 0, 0.7);
+            color: #000;
+            text-decoration: none;
+        }
+
+        .btn-gold-download::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(60deg, transparent 30%, rgba(255, 255, 255, 0.7) 50%, transparent 70%);
+            transform: rotate(30deg) translateX(-100%);
+            animation: goldShimmer 3s infinite;
+        }
+
+        /* ==========================================================================
+           6. BADGES & FEATURES CARDS
+           ========================================================================== */
+        .trust-badge {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px dashed var(--gold-primary);
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: var(--gold-light);
+            margin-bottom: 25px;
+            font-weight: 600;
+            animation: pulseBadge 2s infinite alternate;
+        }
+
+        .features-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-gold);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.25);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 215, 0, 0.12);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-primary);
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
+        }
+
+        .feature-content {
+            flex-grow: 1;
+        }
+
+        .feature-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+            color: #FFF;
+        }
+
+        .feature-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.35;
+        }
+
+        /* ==========================================================================
+           7. FOOTER & DISCLAIMER SECTION
+           ========================================================================== */
+        .footer {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            background-color: rgba(8, 7, 5, 0.8);
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        .disclaimer {
+            font-size: 0.65rem;
+            color: #666053;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            text-transform: lowercase;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Discord Button in Top-Right Corner -->
+    <a href="https://discord.gg/N7v8qJRbXz" target="_blank" rel="noopener noreferrer" class="discord-corner-btn" title="Join Our Discord Server">
+        <i class="fa-brands fa-discord"></i>
+    </a>
+
+    <!-- Main Hero Container -->
+    <main class="hero-container">
+        
+        <!-- App Logo Section -->
+        <div class="logo-wrapper">
+            <img src="https://cdn.discordapp.com/attachments/1562406734432047185/1563044489919074454/file_0000000035948211b187775f8cc1d669.png?ex=6adc321e&is=6adae09e&hm=e91b309b0dd84713fd3823fef85d27f37a6b31f4d86a9b0449af1874efa41f1b&" alt="CHICKEN ESPORTS Logo" class="app-logo">
+        </div>
+
+        <!-- Header Title & Subtitle -->
+        <h1 class="title">CHICKEN ESPORTS</h1>
+        <p class="subtitle">Play Esports Tournaments & Win Cash Rewards</p>
+
+        <!-- Download Action with MediaFire Link -->
+        <div class="mb-3">
+            <a href="http://www.mediafire.com/file/zluj0k5lqk7e04a/CHICKEN_ESPORTS.apk" class="btn-gold-download" target="_blank" rel="noopener noreferrer" id="downloadBtn">
+                <i class="fa-brands fa-android fa-lg"></i>
+                <span>Download Android App (.APK)</span>
+            </a>
+        </div>
+
+        <!-- Trust & Safety Badge -->
+        <div class="trust-badge">
+            <i class="fa-solid fa-shield-halved text-warning"></i>
+            <span>Verified Safe & Malware-Free APK</span>
+        </div>
+
+        <!-- Platform Feature Cards -->
+        <section class="features-wrapper">
+            
+            <!-- Feature 1: Tournaments -->
+            <article class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <div class="feature-content">
+                    <h2 class="feature-title">Daily Tournaments</h2>
+                    <p class="feature-desc">Compete in BGMI, Free Fire & Minecraft matches for prize pools.</p>
+                </div>
+            </article>
+
+            <!-- Feature 2: Safe Deposits & Payouts -->
+            <article class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <div class="feature-content">
+                    <h2 class="feature-title">Safe Deposits & Payouts</h2>
+                    <p class="feature-desc">Fast, encrypted wallet transactions & direct UPI withdrawals.</p>
+                </div>
+            </article>
+
+            <!-- Feature 3: Room Credentials -->
+            <article class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-key"></i>
+                </div>
+                <div class="feature-content">
+                    <h2 class="feature-title">Instant Credentials</h2>
+                    <p class="feature-desc">Automated Custom Room ID & Password sharing inside app lobby.</p>
+                </div>
+            </article>
+
+            <!-- Feature 4: Support -->
+            <article class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <div class="feature-content">
+                    <h2 class="feature-title">24/7 Admin Support</h2>
+                    <p class="feature-desc">Live community assistance and quick dispute resolutions.</p>
+                </div>
+            </article>
+
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div>&copy; 2026 CHICKEN ESPORTS. All rights reserved.</div>
+        
+        <div class="footer-links">
+            <a href="https://discord.gg/N7v8qJRbXz" target="_blank">Discord Community</a>
+            <span>&bull;</span>
+            <a href="#downloadBtn">Terms of Service</a>
+        </div>
+
+        <!-- Legal Disclaimer Note -->
+        <div class="disclaimer">no guarantee</div>
+    </footer>
+</body>
+</html>
